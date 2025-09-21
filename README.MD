@@ -58,3 +58,10 @@ The application uses:
 - **Next.js**: React framework with App Router
 - **Tailwind CSS**: Utility-first styling
 - **Radix UI**: Accessible component primitives
+
+## Future Improvements
+
+- **Better Model**: Upgrade to LLaVA-1.6, Qwen-VL, or BLIP-2 for superior diagram and text recognition 
+- **LLM Integration**: Use language models to understand complex relationships in mind maps, flowcharts and diagrams
+- **Convert to Digital Whiteboard**: Image to Digital Whiteboard (something like Excalidraw)
+
