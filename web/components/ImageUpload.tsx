@@ -7,6 +7,7 @@ interface ImageUploadProps {
   onConvert: () => void
   isLoading: boolean
   fileInputRef: React.RefObject<HTMLInputElement>
+  setUploadedImage: (image: string | null) => void
 }
 
 export function ImageUpload({ 
@@ -14,7 +15,8 @@ export function ImageUpload({
   onImageUpload, 
   onConvert, 
   isLoading, 
-  fileInputRef 
+  fileInputRef,
+  setUploadedImage
 }: ImageUploadProps) {
   return (
     <div>
@@ -81,8 +83,32 @@ export function ImageUpload({
       
       {!uploadedImage && (
         <div className="mt-4 text-center">
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-            Need an example whiteboard? Try ours.
+          <button 
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+            onClick={() => {
+              // Load the sample image
+              const img = new Image()
+              img.onload = () => {
+                const canvas = document.createElement('canvas')
+                const ctx = canvas.getContext('2d')!
+                canvas.width = img.width
+                canvas.height = img.height
+                ctx.drawImage(img, 0, 0)
+                canvas.toBlob((blob) => {
+                  if (blob) {
+                    const file = new File([blob], 'sample-whiteboard.png', { type: 'image/png' })
+                    const reader = new FileReader()
+                    reader.onload = (e) => {
+                      setUploadedImage(e.target?.result as string)
+                    }
+                    reader.readAsDataURL(file)
+                  }
+                })
+              }
+              img.src = '/photo.png'
+            }}
+          >
+            Don't have an image? Take ours!
           </button>
         </div>
       )}

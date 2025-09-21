@@ -18,6 +18,7 @@ export default function DoclingVLMConverter() {
     convertImageToMarkdown,
     copyToClipboard,
     setViewMode,
+    setUploadedImage,
     setError
   } = useImageConverter()
 
@@ -38,6 +39,7 @@ export default function DoclingVLMConverter() {
               onConvert={convertImageToMarkdown}
               isLoading={isLoading}
               fileInputRef={fileInputRef}
+              setUploadedImage={setUploadedImage}
             />
 
             {error && (

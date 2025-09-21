@@ -62,6 +62,7 @@ export function useImageConverter() {
     convertImageToMarkdown,
     copyToClipboard,
     setViewMode,
+    setUploadedImage,
     setError: () => conversionMutation.reset()
   }
 }
