@@ -22,11 +22,11 @@ export function ImageUpload({
 
       {uploadedImage ? (
         <div className="space-y-4">
-          <div className="relative">
+          <div className="relative h-[400px] overflow-hidden">
             <img
               src={uploadedImage}
               alt="Uploaded document"
-              className="w-full rounded-xl border border-gray-200 shadow-xs"
+              className="w-full h-full object-cover rounded-xl border border-gray-200 shadow-xs"
             />
             <div className="absolute top-3 right-3">
               <Button 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Copy, Eye, Code2, FileText } from "lucide-react"
+import ReactMarkdown from 'react-markdown'
 
 interface MarkdownOutputProps {
   markdownOutput: string
@@ -58,7 +59,12 @@ export function MarkdownOutput({
         <div className="relative">
           {viewMode === 'preview' ? (
             <div className="min-h-[400px] border border-gray-200 bg-white rounded-xl p-6 overflow-y-auto text-sm leading-relaxed">
-              <div className="whitespace-pre-wrap text-gray-700">{markdownOutput}</div>
+              <ReactMarkdown components={{
+                pre: ({children, ...props}) => <div className="overflow-auto">{children}</div>,
+                code: ({children, ...props}) => <code className="text-sm">{children}</code>
+              }}>
+                {markdownOutput}
+              </ReactMarkdown>
             </div>
           ) : (
             <Textarea
