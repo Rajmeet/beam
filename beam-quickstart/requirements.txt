@@ -1,0 +1,7 @@
+beam-sdk>=0.20.0
+docling>=1.0.0
+torch>=2.0.0
+transformers>=4.30.0
+pydantic>=2.0.0
+requests>=2.28.0
+python-multipart>=0.0.5
