@@ -58,7 +58,7 @@ export function MarkdownOutput({
       {markdownOutput ? (
         <div className="relative">
           {viewMode === 'preview' ? (
-            <div className="min-h-[400px] border border-gray-200 bg-white rounded-xl p-6 overflow-y-auto text-sm leading-relaxed">
+            <div className="h-[400px] max-h-[400px] border border-gray-200 bg-white rounded-xl p-6 overflow-y-auto text-sm leading-relaxed">
               <ReactMarkdown components={{
                 pre: ({children, ...props}) => <div className="overflow-auto">{children}</div>,
                 code: ({children, ...props}) => <code className="text-sm">{children}</code>

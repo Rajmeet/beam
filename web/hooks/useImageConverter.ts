@@ -1,6 +1,7 @@
 import { useState, useRef } from "react"
 import { compressImage, formatMarkdown } from "@/lib/image-utils"
 import { useImageConversion } from "./useImageConversion"
+import { toast } from "sonner"
 
 export function useImageConverter() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
@@ -47,6 +48,7 @@ export function useImageConverter() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(markdownOutput)
+    toast.success("Markdown copied to clipboard!")
   }
 
   return {

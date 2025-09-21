@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { QueryProvider } from "@/components/QueryProvider";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           {children}
+          <Toaster position="top-right" />
         </QueryProvider>
       </body>
     </html>
