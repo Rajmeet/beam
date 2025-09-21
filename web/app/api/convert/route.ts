@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Your deployed Beam Cloud service URL with GPU
-const BEAM_SERVICE_URL = process.env.BEAM_SERVICE_URL || 'https://73335fe9-5402-48ea-a184-448796f68612.app.beam.cloud'
+const BEAM_SERVICE_URL = process.env.BEAM_SERVICE_URL 
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,11 +27,11 @@ export async function POST(request: NextRequest) {
 
     console.log('Sending to Beam service:', BEAM_SERVICE_URL)
     
-    const response = await fetch(BEAM_SERVICE_URL, {
+    const response = await fetch(BEAM_SERVICE_URL || '', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.BEAM_TOKEN || 'dP0jk8STHqWp2jQlBcobQAEKVi0rC6snPLP1a1WFEI_pIM3qzTTNY6YVp1o-CVUctJYC5oOTBIER5hxszxhNBA=='}`,
+        'Authorization': `Bearer ${process.env.BEAM_TOKEN}`,
       },
       body: JSON.stringify({ image: dataUrl }),
     })
