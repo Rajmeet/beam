@@ -7,6 +7,40 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Upload, Loader2 } from "lucide-react"
 
+// Image compression function
+const compressImage = (file: Blob, filename: string): Promise<File> => {
+  return new Promise((resolve) => {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')!
+    const img = new Image()
+    
+    img.onload = () => {
+      // Calculate new dimensions (max 1024px on longest side)
+      const maxSize = 1024
+      let { width, height } = img
+      
+      if (width > height && width > maxSize) {
+        height = (height * maxSize) / width
+        width = maxSize
+      } else if (height > maxSize) {
+        width = (width * maxSize) / height
+        height = maxSize
+      }
+      
+      canvas.width = width
+      canvas.height = height
+      
+      // Draw and compress
+      ctx.drawImage(img, 0, 0, width, height)
+      canvas.toBlob((blob) => {
+        resolve(new File([blob!], filename, { type: 'image/jpeg' }))
+      }, 'image/jpeg', 0.8) // 80% quality
+    }
+    
+    img.src = URL.createObjectURL(file)
+  })
+}
+
 export default function DoclingVLMConverter() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [markdownOutput, setMarkdownOutput] = useState("")
@@ -35,14 +69,16 @@ export default function DoclingVLMConverter() {
     setMarkdownOutput("")
 
     try {
-      // Convert base64 to file for upload
+      // Convert base64 to file and compress it
       const response = await fetch(uploadedImage)
       const blob = await response.blob()
-      const file = new File([blob], 'document.jpg', { type: 'image/jpeg' })
+      
+      // Compress image before sending
+      const compressedFile = await compressImage(blob, 'document.jpg')
 
       // Create FormData
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('file', compressedFile)
 
       const apiResponse = await fetch('/api/convert', {
         method: 'POST',

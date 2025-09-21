@@ -44,12 +44,11 @@ except Exception:
 @endpoint(
     image=Image(
         python_version="python3.11",
-        base_image="nvcr.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04"
+        base_image="nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04"
     ).add_python_packages([
-        "torch==2.4.0+cu121",
-        "torchvision==0.19.0+cu121",
-        "torchaudio==2.4.0+cu121",
-        "--extra-index-url", "https://download.pytorch.org/whl/cu121",
+        "torch",
+        "torchvision", 
+        "torchaudio",
         "docling",
         "transformers",
         "requests",
@@ -60,7 +59,7 @@ except Exception:
     cpu=4,
     memory="16Gi"
 )
-def convert(context, **kwargs) -> Dict[str, Any]:
+def convert(context, request=None, **kwargs) -> Dict[str, Any]:
     """Convert images to markdown using Docling VLM pipeline"""
     global converter
     
@@ -84,21 +83,18 @@ def convert(context, **kwargs) -> Dict[str, Any]:
         import logging
         logger = logging.getLogger(__name__)
         
+        # Handle base64 image only
         image_data = kwargs.get("image")
         if not image_data or not image_data.startswith('data:'):
-            logger.debug("No valid image data provided")
+            logger.error("No valid image data provided")
             return {"error": "No valid image data provided"}
         
         # Process base64 image
         header, encoded = image_data.split(',', 1)
         content = base64.b64decode(encoded)
         buf = io.BytesIO(content)
-        
-        # Determine format
-        if 'pdf' in header:
-            filename = "document.pdf"
-        else:
-            filename = "image.jpg"
+        filename = "document.pdf" if 'pdf' in header else "image.jpg"
+        logger.info(f"Processing {filename}, size: {len(content)} bytes")
         
         # Create DocumentStream and convert
         from docling.datamodel.base_models import DocumentStream

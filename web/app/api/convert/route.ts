@@ -1,27 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Your deployed Beam Cloud service URL with GPU
-const BEAM_SERVICE_URL = process.env.BEAM_SERVICE_URL || 'https://58c4d29f-fedb-4130-b9f4-197d7c12f9b6.app.beam.cloud'
+const BEAM_SERVICE_URL = process.env.BEAM_SERVICE_URL || 'https://73335fe9-5402-48ea-a184-448796f68612.app.beam.cloud'
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('Received request')
     const formData = await request.formData()
     const file = formData.get('file') as File
 
+    console.log('File received:', file?.name, file?.size, file?.type)
+
     if (!file) {
+      console.log('No file provided')
       return NextResponse.json(
         { error: 'No file provided' },
         { status: 400 }
       )
     }
 
-    // Convert file to base64 data URL
+    // Convert file to base64 and send to Beam service
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
     const base64 = buffer.toString('base64')
     const dataUrl = `data:${file.type};base64,${base64}`
 
-    // Send to Beam service with base64 data
+    console.log('Sending to Beam service:', BEAM_SERVICE_URL)
+    
     const response = await fetch(BEAM_SERVICE_URL, {
       method: 'POST',
       headers: {
@@ -30,6 +35,8 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({ image: dataUrl }),
     })
+
+    console.log('Beam service response status:', response.status)
 
     const result = await response.json()
     
@@ -51,7 +58,6 @@ export async function POST(request: NextRequest) {
       fileName: file.name,
       fileSize: file.size,
       fileType: file.type,
-      imageUrl: dataUrl,
     })
   } catch (error) {
     console.error('Conversion error:', error)
