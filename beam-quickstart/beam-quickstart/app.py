@@ -50,7 +50,6 @@ deepseek_ocr_v2 = VLLM(
     ]).with_envs({  
         "MODEL_DIR": "/models",
         "PYTHONUNBUFFERED": "1",
-        "HF_TOKEN": "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",
     }),
     vllm_args=VLLMArgs(
         model="deepseek-ai/DeepSeek-OCR",
