@@ -1,0 +1,300 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="author" content="Observee" />
+    <title>Observee - VLMs and VLAs for Edge Computing</title>
+    <link rel="stylesheet" href="src/reset.css" />
+    <link rel="stylesheet" href="src/index.css" />
+    <style>
+        h2 {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="header">
+        <tr>
+            <td colspan="2" rowspan="2" class="width-auto">
+                <h1 class="title">Observee</h1>
+                <span class="subtitle">VLMs and VLAs for Edge Computing</span>
+            </td>
+            <th>Version</th>
+            <td class="width-min">v0.0.2</td>
+        </tr>
+        <tr>
+            <th>Updated</th>
+            <td class="width-min">
+                <time style="white-space: pre">2025-10-15</time>
+            </td>
+        </tr>
+        <tr>
+            <th class="width-min">Company</th>
+            <td class="width-auto"><cite>Observee Inc.</cite></td>
+            <th class="width-min">Email</th>
+            <td>
+                <a href="mailto:contact@observee.com">contact@observee.com</a>
+            </td>
+        </tr>
+    </table>
+
+    <p style="margin: 2em 0; text-align: center">
+        <strong>Backed by</strong>
+        <img src="assets/yc-logo.svg" alt="Y Combinator" style="
+                    height: 2.5em;
+                    width: auto;
+                    vertical-align: middle;
+                    margin-left: 0.5em;
+                    display: inline-block;
+                " />
+    </p>
+
+    <nav id="TOC" role="doc-toc">
+        <h2 id="toc-title">Contents</h2>
+        <ul class="incremental">
+            <li><a href="#about" id="toc-about">About Observee</a></li>
+            <li>
+                <a href="#vlm-sdk" id="toc-vlm-sdk">VLM SDK</a>
+            </li>
+            <li>
+                <a href="#vlm-vla-training-pipeline" id="toc-vlm-vla-training-pipeline">VLM/VLA Training Pipeline
+                    (Coming Soon)</a>
+            </li>
+            <li>
+                <a href="#demo" id="toc-demo">VLA in Action: Drone Demo</a>
+            </li>
+        </ul>
+    </nav>
+    <h2 id="about">About Observee</h2>
+    <p>
+        Observee is specializing in building and deploying <strong>Vision Language Models (VLMs)</strong> and
+        <strong>Vision Language Action Models (VLAs)</strong> for edge computing environments.
+        Our pipeline is built for real-time frame selection and video processing to reduce latency and costs while
+        enabling edge devices to work as autonomous AI agents.
+    </p>
+    <p>
+        Each deployed model supports reinforcement learning loops through periodic fine-tuning and policy adaptation
+        from environmental feedback, enabling continuous performance improvement over time (currently in Alpha).
+    </p>
+    <p>
+        We have models available for edge devices with different hardware and software constraints while also providing
+        hybrid online/offline inference capabilities.
+    </p>
+    <h2 id="vlm-sdk">VLM SDK</h2>
+    <p>
+        Our VLM SDK is available in beta. Please contact us to get access.
+    </p>
+    <p>
+        It supports <strong>RSTP, UDP, WebRTC, ONVIF, and HTTP</strong> video streams with automated frame selection to
+        optimize costs with real-time video processing for handling general purpose vision tasks and supports tool use
+        for complex tasks.
+    </p>
+    <h3>Key Capabilities</h3>
+    <ul class="incremental">
+        <li>Detailed Real Time Video Processing</li>
+        <li>
+            Object Detection
+        </li>
+        <li>
+            Facial Recognition and Action Tracking for Security or Safety
+        </li>
+        <li>
+            Production Line Output Tracking
+        </li>
+        <li>
+            Resource Monitoring
+        </li>
+        <li>
+            Automated Documentation for Reporting and Analytics
+        </li>
+    </ul>
+
+    <h3>Training Pipeline</h3>
+    <figure>
+        <pre>
+Data Collection → Model Architecture → Distributed Training → Edge Optimization
+      │                   │                   │                    │
+      ▼                   ▼                   ▼                    ▼
+┌──────────┐      ┌──────────────┐    ┌────────────┐     ┌─────────────┐
+│Multi-Modal│      │Vision-Language│    │Scalable GPU│     │Quantization │
+│  Datasets │ ───► │Action Models │ ──►│  Clusters  │ ──► │& Pruning    │
+└──────────┘      └──────────────┘    └────────────┘     └─────────────┘
+</pre>
+        <figcaption>VLA Training Pipeline Architecture</figcaption>
+    </figure>
+
+    <h2 id="demo">VLA in Action: Drone Demo</h2>
+    <p>
+        Watch our first VLA model in action, demonstrating autonomous drone
+        navigation and control:
+    </p>
+    <figure>
+        <iframe width="100%" height="480" src="https://www.youtube.com/embed/chRQ782svaI" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <figcaption>
+            Observee VLA Model - Autonomous Drone Navigation
+        </figcaption>
+    </figure>
+
+
+    <h2 id="vlm-inference">VLM Inference Services</h2>
+    <p>Our Vision Language Models are specifically designed for high-performance inference at the edge. We offer both
+        pre-trained models and custom solutions tailored to your specific use cases.</p>
+    <h3>Inference Capabilities</h3>
+    <table>
+        <thead>
+            <tr>
+                <th class="width-min">Model Type</th>
+                <th class="width-auto">Description</th>
+                <th class="width-min">Edge Latency</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>VLM-Nano</td>
+                <td>Lightweight model for basic vision-language tasks</td>
+                <td>&lt; 50ms</td>
+            </tr>
+            <tr>
+                <td>VLM-Standard</td>
+                <td>Balanced performance for general applications</td>
+                <td>&lt; 100ms</td>
+            </tr>
+            <tr>
+                <td>VLM-Pro</td>
+                <td>High-accuracy model for complex reasoning</td>
+                <td>&lt; 200ms</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Deployment Options</h3>
+    <ul class="incremental">
+        <li><strong>On-Device Inference</strong> - Deploy directly on edge hardware</li>
+        <li><strong>Edge Server Solutions</strong> - Centralized edge compute for multiple devices</li>
+        <li><strong>Hybrid Cloud-Edge</strong> - Intelligent workload distribution</li>
+        <li><strong>Custom Integration</strong> - SDK and API solutions for seamless integration</li>
+    </ul>
+    <h2 id="edge-solutions">Edge Computing Solutions</h2>
+    <p>Observee's edge computing platform is designed to handle the unique challenges of deploying AI models in
+        resource-constrained environments:</p>
+    <h3>Hardware Support</h3>
+    <ul class="tree">
+        <li>
+            <p style="margin: 0;">
+                <strong>Supported Platforms</strong>
+            </p>
+            <ul class="incremental">
+                <li>ARM Processors
+                    <ul class="incremental">
+                        <li>Raspberry Pi</li>
+                        <li>NVIDIA Jetson</li>
+                        <li>Apple Silicon</li>
+                    </ul>
+                </li>
+                <li>GPU Accelerators
+                    <ul class="incremental">
+                        <li>NVIDIA Edge GPUs</li>
+                        <li>AMD Radeon</li>
+                        <li>Intel Arc</li>
+                    </ul>
+                </li>
+                <li>Specialized Hardware
+                    <ul class="incremental">
+                        <li>Google Coral TPU</li>
+                        <li>Intel Movidius</li>
+                        <li>Qualcomm AI Engine</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <h2 id="technology">Technology Stack</h2>
+    <p>Our technology stack is built for performance, scalability, and ease of deployment:</p>
+    <div class="grid">
+        <label><strong>Training Framework</strong>
+            <input type="text" readonly value="PyTorch + Custom CUDA" /></label>
+        <label><strong>Optimization</strong>
+            <input type="text" readonly value="TensorRT + ONNX" /></label>
+    </div>
+    <div class="grid">
+        <label><strong>Edge Runtime</strong>
+            <input type="text" readonly value="C++ + Python SDK" /></label>
+        <label><strong>Model Format</strong>
+            <input type="text" readonly value="Quantized ONNX/TRT" /></label>
+    </div>
+    <div class="grid">
+        <label><strong>Monitoring</strong>
+            <input type="text" readonly value="Real-time Metrics" /></label>
+        <label><strong>Updates</strong>
+            <input type="text" readonly value="OTA Model Updates" /></label>
+    </div>
+    <h3>Performance Metrics</h3>
+    <figure>
+        <pre>
+                     Model Performance Comparison
+
+    │                                     ████ Observee VLMs
+100 │
+    │                                     ░░░░ Standard Models
+    │
+ 80 │   █
+    │   █
+    │   █         █
+ 60 │   █         █
+    │   █         █         █
+    │   █         █         █
+ 40 │   █         █         █
+    │   ░         █         █         █
+    │   ░         ░         █         █
+ 20 │   ░         ░         ░         █
+    │   ░         ░         ░         ░
+    │   ░         ░         ░         ░
+  0 └───▀─────────▀─────────▀─────────▀─────────────
+    Accuracy   Speed    Memory   Power Efficiency
+</pre>
+    </figure>
+    <h2 id="contact">Get Started</h2>
+    <p>Ready to deploy advanced AI at the edge? Whether you need custom VLA training, pre-built VLM inference solutions,
+        or comprehensive edge AI consulting, Observee has the expertise to bring your project to life.</p>
+    <form class="grid">
+        <label>Company Name
+            <input type="text" placeholder="Your Company" /></label>
+        <label>Email
+            <input type="email" placeholder="contact@company.com" /></label>
+        <label>Use Case
+            <input type="text" placeholder="Autonomous vehicles, robotics, etc." /></label>
+    </form>
+    <nav>
+        <button>Request Demo</button>
+        <button>Get Quote</button>
+        <button>Technical Consultation</button>
+    </nav>
+    <hr>
+    <details>
+        <summary>
+            Partnership Opportunities
+        </summary>
+        <p>
+            We're actively seeking partnerships with hardware manufacturers, system integrators, and technology
+            companies.
+            Contact us to explore collaboration opportunities in edge AI deployment.
+        </p>
+    </details>
+    <p><strong>Contact Information:</strong></p>
+    <ul class="incremental">
+        <li>Email: <a href="mailto:contact@observee.com">contact@observee.com</a></li>
+        <li>Technical Support: <a href="mailto:support@observee.com">support@observee.com</a></li>
+        <li>Partnership Inquiries: <a href="mailto:partners@observee.com">partners@observee.com</a></li>
+    </ul>
+    <p><em></em>Observee - Bringing Advanced AI to the Edge</em></p>
+
+    <div class="debug-grid"></div>
+    <script src="src/index.js"></script>
+</body>
+
+</html>

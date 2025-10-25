@@ -20,7 +20,7 @@ export function ImageUpload({
 }: ImageUploadProps) {
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-900 mb-4">Whiteboard Image:</label>
+      <label className="block text-sm font-semibold text-gray-900 mb-4">Upload Document or Image:</label>
 
       {uploadedImage ? (
         <div className="space-y-4">
@@ -28,13 +28,13 @@ export function ImageUpload({
             <img
               src={uploadedImage}
               alt="Uploaded document"
-              className="w-full h-full object-cover rounded-xl border border-gray-200 shadow-xs"
+              className="w-full h-full object-contain rounded-xl border border-gray-200 shadow-xs bg-white"
             />
             <div className="absolute top-3 right-3">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
-                onClick={() => fileInputRef.current?.click()} 
+                onClick={() => fileInputRef.current?.click()}
                 disabled={isLoading}
                 className="bg-white/90 backdrop-blur-xs"
               >
@@ -42,8 +42,8 @@ export function ImageUpload({
               </Button>
             </div>
           </div>
-          <Button 
-            onClick={onConvert} 
+          <Button
+            onClick={onConvert}
             disabled={isLoading}
             className="w-full h-12 text-base font-medium"
             size="lg"
@@ -51,10 +51,10 @@ export function ImageUpload({
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Converting...
+                Extracting text...
               </>
             ) : (
-              "Convert to Markdown"
+              "Extract Text"
             )}
           </Button>
         </div>
@@ -67,18 +67,18 @@ export function ImageUpload({
             <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
               <PenTool className="h-8 w-8 text-gray-400 group-hover:text-blue-500" />
             </div>
-            <p className="text-lg font-medium text-gray-700 mb-2">Upload whiteboard photo</p>
-            <p className="text-sm text-gray-500">or drag and drop</p>
+            <p className="text-lg font-medium text-gray-700 mb-2">Upload document or image</p>
+            <p className="text-sm text-gray-500">PDF, PNG, JPG, or other image formats</p>
           </div>
         </div>
       )}
 
-      <input 
-        ref={fileInputRef} 
-        type="file" 
-        accept="image/*,.pdf,.docx,.pptx" 
-        onChange={onImageUpload} 
-        className="hidden" 
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*,application/pdf"
+        onChange={onImageUpload}
+        className="hidden"
       />
       
       {!uploadedImage && (
